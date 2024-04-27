@@ -10,7 +10,7 @@ msg3:
 msg4:
 	db	"%f", 0
 input_was:
-	db	"Your input was: %f", 10, 0
+	db	"Your input was: %.10g", 10, 0
 
 
 section .text
@@ -22,7 +22,7 @@ extern scanf
 extern log1p
 global main
 main:
-	align	8
+;	push	rcx
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, y
@@ -37,9 +37,9 @@ main:
 
 	movss	xmm0, [rbp - x]
 	mov	edi, input_was
-	mov	eax, 0
+	mov	eax, 1
 	call	printf
-	
+;	pop	rcx
 
 ;	xor	eax, eax
 ;	mov	edi, msg2
