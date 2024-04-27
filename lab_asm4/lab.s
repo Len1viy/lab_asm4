@@ -20,16 +20,17 @@ section .text
 
 
 mylog1pf:
+	mov	edi, input_was
 	cvtss2sd xmm0, xmm0
 	cvtss2sd xmm1, xmm1
 	mov	eax, 2
-	mov	edi, input_was
 	call	printf	
 
 
 x	equ	8
 y	equ	x + 8
-acc	equ	y + 8
+z	equ	y + 8
+acc	equ	z + 8
 extern printf
 extern scanf
 extern log1pf
@@ -54,7 +55,7 @@ main:
 	call	printf
 	
 	mov	edi, msg4
-	lea	rsi, [rbp - acc]
+	lea	rsi, [rbp - z]
 	mov	eax, 0
 	call	scanf
 
@@ -64,7 +65,7 @@ main:
 	cvtss2sd 	xmm0, xmm0
 	movsd	[rbp - y], xmm0
 	movss	xmm0, [rbp - x]
-	movss	xmm1, [rbp - acc]
+	movss	xmm1, [rbp - z]
 	call	mylog1pf
 	
 
