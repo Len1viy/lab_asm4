@@ -18,11 +18,13 @@ num:
 section .text
 
 
-
+extern printf
 mylog1pf:
 	mov	edi, input_was
-	cvtss2sd xmm0, xmm0
-	cvtss2sd xmm1, xmm1
+	movss	xmm2, xmm0
+	cvtss2sd xmm0, xmm2
+	movss	xmm2, xmm1
+	cvtss2sd xmm1, xmm2
 	mov	eax, 2
 	call	printf	
 
